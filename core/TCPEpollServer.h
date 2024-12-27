@@ -33,6 +33,53 @@ namespace fpnn
 #define FPNN_DEFAULT_IO_BUFFER_CHUNK_SIZE	256
 
 #define FPNN_SEND_QUEUE_MUTEX_COUNT			128
+/*下面是一个使用 [`shared_ptr`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fworkspaces%2FMyDbproxy%2Ffpnn%2Fcore%2FTCPEpollServer.h%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A37%2C%22character%22%3A14%7D%7D%5D%2C%227287cd11-1206-4a91-9ac0-5a0473c86148%22%5D "Go to definition") 的 `reset` 方法的示例。`reset` 方法用于重置 [`shared_ptr`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fworkspaces%2FMyDbproxy%2Ffpnn%2Fcore%2FTCPEpollServer.h%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A37%2C%22character%22%3A14%7D%7D%5D%2C%227287cd11-1206-4a91-9ac0-5a0473c86148%22%5D "Go to definition")，使其指向新的对象或为空。
+
+```cpp
+#include <iostream>
+#include <memory>
+
+class MyClass {
+public:
+    MyClass(int value) : value(value) {
+        std::cout << "MyClass constructor, value: " << value << std::endl;
+    }
+    ~MyClass() {
+        std::cout << "MyClass destructor, value: " << value << std::endl;
+    }
+    int getValue() const {
+        return value;
+    }
+private:
+    int value;
+};
+
+int main() {
+    // 创建一个 shared_ptr 指向 MyClass 对象
+    std::shared_ptr<MyClass> ptr = std::make_shared<MyClass>(10);
+    std::cout << "ptr value: " << ptr->getValue() << std::endl;
+
+    // 重置 shared_ptr，使其指向新的 MyClass 对象
+    ptr.reset(new MyClass(20));
+    std::cout << "ptr value after reset: " << ptr->getValue() << std::endl;
+
+    // 重置 shared_ptr，使其为空
+    ptr.reset();
+    if (!ptr) {
+        std::cout << "ptr is now empty" << std::endl;
+    }
+
+    return 0;
+}
+```
+
+在这个示例中：
+
+1. 创建了一个 [`shared_ptr`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fworkspaces%2FMyDbproxy%2Ffpnn%2Fcore%2FTCPEpollServer.h%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A37%2C%22character%22%3A14%7D%7D%5D%2C%227287cd11-1206-4a91-9ac0-5a0473c86148%22%5D "Go to definition")，指向一个 `MyClass` 对象，初始值为 10。
+2. 使用 `reset` 方法重置 [`shared_ptr`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fworkspaces%2FMyDbproxy%2Ffpnn%2Fcore%2FTCPEpollServer.h%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A37%2C%22character%22%3A14%7D%7D%5D%2C%227287cd11-1206-4a91-9ac0-5a0473c86148%22%5D "Go to definition")，使其指向一个新的 `MyClass` 对象，值为 20。
+3. 再次使用 `reset` 方法重置 [`shared_ptr`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fworkspaces%2FMyDbproxy%2Ffpnn%2Fcore%2FTCPEpollServer.h%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A37%2C%22character%22%3A14%7D%7D%5D%2C%227287cd11-1206-4a91-9ac0-5a0473c86148%22%5D "Go to definition")，使其为空。
+
+运行这个程序的输出将显示 `MyClass` 对象的构造和析构过程，以及 [`shared_ptr`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fworkspaces%2FMyDbproxy%2Ffpnn%2Fcore%2FTCPEpollServer.h%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A37%2C%22character%22%3A14%7D%7D%5D%2C%227287cd11-1206-4a91-9ac0-5a0473c86148%22%5D "Go to definition") 的值变化。*/
 
 	class TCPEpollServer;
 	typedef std::shared_ptr<TCPEpollServer> TCPServerPtr;
@@ -262,6 +309,7 @@ namespace fpnn
 			if (initCount > 0 && arraySize > initCount)
 				arraySize = initCount;
 
+			// 客户端建立连接后conections的处理线程池
 			_workerPool.reset(new ParamTemplateThreadPoolArray<RequestPackage *>(arraySize, _serverMasterProcessor));
 			_workerPool->init(initCount, perAppendCount, perfectCount, maxCount, maxQueueSize);
 		}
