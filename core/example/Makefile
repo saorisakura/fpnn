@@ -1,7 +1,7 @@
-EXES_TEST = complexServer
+# EXES_TEST = complexServer
 EXES_TEST2 = simpleServer
-EXES_TEST3 = memcacheServer
-EXES_CLIENT3 = memcacheClient
+# EXES_TEST3 = memcacheServer
+# EXES_CLIENT3 = memcacheClient
 
 CFLAGS +=
 CXXFLAGS +=
@@ -13,7 +13,7 @@ OBJS_TEST2 = simpleServer.o
 OBJS_TEST3 = memcacheServer.o
 OBJS_CLIENT3 = memcacheClient.o
 
-all: $(EXES_TEST) $(EXES_TEST2) $(EXES_TEST3) $(EXES_CLIENT3)
+all: $(EXES_TEST2)
 
 clean:
 	$(RM) *.o $(EXES_TEST) $(EXES_TEST2) $(EXES_TEST3) $(EXES_CLIENT3)

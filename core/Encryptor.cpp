@@ -7,6 +7,16 @@
 
 using namespace fpnn;
 
+#ifndef htole32
+static inline uint32_t htole32(uint32_t x) {
+    #if __BYTE_ORDER == __LITTLE_ENDIAN
+    return x;
+    #else
+    return __builtin_bswap32(x);
+    #endif
+}
+#endif
+
 void PackageEncryptor::decrypt(uint8_t* dest, uint8_t* src, int len)
 {
 	uint8_t iv[16];

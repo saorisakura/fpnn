@@ -22,7 +22,7 @@ LIBFPNN_X_SO = libfpnn_x.so
 
 CFLAGS +=
 CXXFLAGS +=
-CPPFLAGS += -I../base -I../proto -I../proto/msgpack -I../proto/rapidjson
+CPPFLAGS += -I../base -I../proto -I../proto/msgpack -I../proto/rapidjson -I/usr/include
 
 # For MacOS
 UNAME := $(shell uname -s)
